@@ -1,0 +1,5 @@
+# evhttpserver
+1.使用libevent库中的evhttp搭建的多线程http服务器，每一个线程绑定一个reactor，监听服务端的fd，接受连接，处理请求，返回数据。
+2.可以处理get与post请求，实现用户的注册与登录。
+3.搞完之后发现evhttp库确实不适合写多线程http服务器，内部回调机制被写死了，一个线程接收到的客户端连接只能放在此线程对应的reactor上监听处理。
+4.正在使用基本的libevent框架实现主reactor接收连接并派发到子reactor进行处理的多reactor多线程模式。
